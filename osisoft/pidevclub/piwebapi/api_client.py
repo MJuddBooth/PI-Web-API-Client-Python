@@ -136,7 +136,8 @@ class ApiClient(object):
         response_data = self.request(method, url,
                                      query_params=query_params,
                                      headers=header_params,
-                                     body=body)
+                                     body=body,
+                                     timeout=_request_timeout)
 
         return_data = response_data
         if _preload_content:
@@ -321,12 +322,13 @@ class ApiClient(object):
         thread.start()
         return thread
 
-    def request(self, method, url, query_params=None, headers=None, body=None):
+    def request(self, method, url, query_params=None, headers=None, body=None, timeout=None):
 
         return self.rest_client.send_request(url, method,
                                     body=body,
                                     query_params=query_params,
-                                    headers=headers)
+                                    headers=headers,
+                                    timeout=timeout)
 
 
 
